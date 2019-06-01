@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 门店表的映射文件	namespace值为对应接口的全路径 -->
+<mapper namespace="com.tedu.dao.OrderMapper">
+	<select id="findAll" resultType="com.tedu.pojo.Order">
+		select id, door_id doorId, order_no orderNo,
+		order_type orderType, pnum, cashier, order_time orderTime,
+		pay_time payTime, pay_type payType,
+		price
+		 from tb_order
+	</select>
+	<update id="deleteById">
+		delete from tb_order where id=#{id}
+	</update>
+	<update id="addOrder">
+		insert into tb_order values(
+		null, #{doorId}, #{orderNo},
+		#{orderType}, #{pnum}, #{cashier}, null,
+		null, #{payType},
+		#{price}
+		)
+	</update>
+	<select id="selectById" resultType="com.tedu.pojo.Order">
+		select id, door_id doorId, order_no orderNo,
+		order_type orderType, pnum, cashier, order_time orderTime,
+		pay_time PayTime, pay_type payType,
+		price
+		 from tb_order
+		where id=#{id}
+	</select>
+	<update id="updateById">
+		update tb_order set door_id=#{doorId}, order_no=#{orderNo},
+		order_type=#{orderType}, pnum=#{pnum}, cashier=#{cashier}, order_time=#{orderTime},
+		pay_time=#{payTime}, pay_type=#{payType},
+		price=#{price}
+		where id=#{id}
+	</update>
+</mapper>
